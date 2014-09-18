@@ -1,0 +1,28 @@
+﻿<Window x:Class="CognexCleanup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EUTECT - CognexCleanup" Closing="Window_Closing" Height="350" Width="525">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <StackPanel Name="brd_Buttons" IsEnabled="False">
+                <Button Name="btn_openQuickBuild" Height="30"  Click="btn_openQuickBuild_Click">Open Quick Build</Button>
+                <Button Name="btn_setRelease" Height="30"  Click="btn_setRelease_Click">set all scripts to "release" (Toolblock/Toolgroup)</Button>
+                <Button Name="btn_enableImages" Height="30" Click="btn_enableImages_Click">enable all additional images</Button>
+                <Button Name="btn_disableImages" Height="30" Click="btn_disableImages_Click">disable all additional images</Button>
+            </StackPanel>
+            <Grid Name="brd_Loading" Background="White">
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center">... Loading ... </Label>
+            </Grid>
+        </Grid>
+        <!--<DockPanel DockPanel.Dock="Bottom">
+            <ProgressBar Height="15" ></ProgressBar>
+        </DockPanel>-->
+        <DockPanel DockPanel.Dock="Bottom">
+            <DockPanel>
+                <!--<TreeView DockPanel.Dock="Left">
+                </TreeView>-->
+                <TextBox DockPanel.Dock="Right" Name="txt_TraceLog" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Foreground="Black" BorderThickness="1"></TextBox>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
+</Window>
