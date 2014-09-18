@@ -111,6 +111,11 @@ namespace CognexCleanup
             #region CognexShutDown
             try
             {
+                //Close all open Framegrabbers due to RuntimeError R6025
+                CogFrameGrabbers frameGrabbers = new CogFrameGrabbers();
+                foreach (ICogFrameGrabber fg in frameGrabbers)
+                    fg.Disconnect(false); 
+
                 //End Starting of Cognex in separate Thread
                 if (CognexLoader != null) CognexLoader.Abort();
                 // Be sure to shudown the CogJobManager!!
@@ -359,10 +364,13 @@ namespace CognexCleanup
             Trace.WriteLine("Change all scripts to release...");
             if (myJob == null) return;
 
-            if (myJob.JobScript.CompileDebug)
+            if (myJob.JobScript != null)
             {
-                Trace.WriteLine("Change JobScript to Release");
-                myJob.JobScript.CompileDebug = false;
+                if (myJob.JobScript.CompileDebug)
+                {
+                    Trace.WriteLine("Change JobScript to Release");
+                    myJob.JobScript.CompileDebug = false;
+                }
             }
 
             SetRelease(myJob.VisionTool as CogToolGroup);
